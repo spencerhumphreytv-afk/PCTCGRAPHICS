@@ -127,4 +127,37 @@ function frame(ts){
 }
 requestAnimationFrame(frame);
 </script>
+  <script>
+(function () {
+  function fitGraphic() {
+    var canvas = document.querySelector("canvas");
+    if (!canvas) return;
+
+    var originalWidth = 1920;
+    var originalHeight = 1080;
+    var scale = window.innerWidth / originalWidth;
+
+    document.documentElement.style.margin = "0";
+    document.documentElement.style.padding = "0";
+    document.documentElement.style.overflow = "hidden";
+
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.style.overflow = "hidden";
+    document.body.style.width = "100%";
+    document.body.style.height = Math.ceil(originalHeight * scale) + "px";
+
+    canvas.style.width = originalWidth + "px";
+    canvas.style.height = originalHeight + "px";
+    canvas.style.transformOrigin = "top left";
+    canvas.style.transform = "scale(" + scale + ")";
+    canvas.style.display = "block";
+  }
+
+  window.addEventListener("load", fitGraphic);
+  window.addEventListener("resize", fitGraphic);
+  setTimeout(fitGraphic, 500);
+  setTimeout(fitGraphic, 1500);
+})();
+</script>
 </body></html>
